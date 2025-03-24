@@ -53,3 +53,10 @@ PRODUCT_USE_SCUDO := true
 # Sensors
 PRODUCT_PACKAGES += \
     sensors.dynamic_sensor_hal
+
+# OpenDelta
+ifeq ($(TARGET_BUILD_GAPPS),true)
+    PRODUCT_PACKAGES += pantahOpenDeltaOverlay
+else
+    PRODUCT_PACKAGES += pantahOpenDeltaOverlayVanilla
+endif
