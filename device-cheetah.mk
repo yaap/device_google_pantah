@@ -58,11 +58,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	device/google/pantah/configs/bluetooth/bt_vendor_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_vendor_overlay.conf
 
-# PowerStats HAL
-PRODUCT_SOONG_NAMESPACES += \
-    device/google/pantah/powerstats/configs/cheetah \
-    device/google/pantah
-
 PRODUCT_PACKAGES += \
     UwbOverlayC10 \
     WifiOverlay2022_C10

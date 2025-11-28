@@ -54,11 +54,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     bluetooth.server.automatic_turn_on=true
 
-# PowerStats HAL
-PRODUCT_SOONG_NAMESPACES += \
-    device/google/pantah/configs/powerstats/panther \
-    device/google/pantah
-
 # WiFi Overlay
 PRODUCT_PACKAGES += \
     WifiOverlay2022_P10
