@@ -22,7 +22,8 @@ include device/google/pantah/sepolicy/panther-sepolicy.mk
 include device/google/pantah/configs/wifi/BoardConfig-wifi.mk
 
 # SEPolicy
-include device/google/pantah/sepolicy/panther-sepolicy.mk
+BOARD_VENDOR_SEPOLICY_DIRS += \
+    $(DEVICE_PATH)/sepolicy/$(DEVICE_CODENAME)/vendor
 
 DEVICE_PATH := device/google/pantah
 VENDOR_PATH := vendor/google/panther
