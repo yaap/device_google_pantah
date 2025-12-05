@@ -92,9 +92,6 @@ PRODUCT_COPY_FILES += \
 	device/google/pantah/configs/nfc/libse-gto-hal.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libse-gto-hal.conf \
 	device/google/pantah/configs/nfc/libse-gto-hal2.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libse-gto-hal2.conf
 
-DEVICE_MANIFEST_FILE += \
-	device/google/pantah/configs/nfc/manifest_se.xml
-
 # Thermal Config
 PRODUCT_COPY_FILES += \
 	device/google/pantah/configs/thermal/thermal_info_config_cheetah.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json \

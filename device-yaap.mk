@@ -57,3 +57,9 @@ ifeq ($(TARGET_BUILD_GAPPS),true)
 else
     PRODUCT_PACKAGES += pantahOpenDeltaOverlayVanilla
 endif
+
+# VINTF
+DEVICE_MANIFEST_FILE += \
+    $(DEVICE_PATH)/vintf/manifest.xml
+DEVICE_PRODUCT_COMPATIBILITY_MATRIX_FILE += \
+    $(DEVICE_PATH)/vintf/device_framework_matrix_product.xml
