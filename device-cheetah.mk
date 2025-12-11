@@ -107,18 +107,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	device/google/pantah/configs/power/powerhint-cheetah-a0.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint-a0.json
 
-# Bluetooth HAL
-PRODUCT_COPY_FILES += \
-	device/google/pantah/configs/bluetooth/bt_vendor_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_vendor_overlay.conf
-
-# Enable Bluetooth AutoOn feature
-PRODUCT_PRODUCT_PROPERTIES += \
-    bluetooth.server.automatic_turn_on=true
-
-# Bluetooth OPUS codec
-PRODUCT_PRODUCT_PROPERTIES += \
-    persist.bluetooth.opus.enabled=true
-
 # Bluetooth Tx power caps
 PRODUCT_COPY_FILES += \
     device/google/pantah/configs/bluetooth/bluetooth_power_limits_cheetah.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits.csv \
@@ -129,61 +117,13 @@ PRODUCT_COPY_FILES += \
     device/google/pantah/configs/bluetooth/bluetooth_power_limits_cheetah_GE2AE_US.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_GE2AE_US.csv \
     device/google/pantah/configs/bluetooth/bluetooth_power_limits_cheetah_GP4BC_US.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_GP4BC_US.csv
 
-PRODUCT_PRODUCT_PROPERTIES += \
-    persist.bluetooth.firmware.selection=BCM.hcd
-
-# Bluetooth AAC VBR
-PRODUCT_PRODUCT_PROPERTIES += \
-    persist.bluetooth.a2dp_aac.vbr_supported=true
-
-# Override BQR mask to enable LE Audio Choppy report, remove BTRT logging
-PRODUCT_PRODUCT_PROPERTIES += \
-    persist.bluetooth.bqr.event_mask=295006 \
-    persist.bluetooth.bqr.vnd_quality_mask=16 \
-    persist.bluetooth.bqr.vnd_trace_mask=0 \
-    persist.bluetooth.vendor.btsnoop=false
-
-# Bluetooth LE Audio
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.bluetooth.leaudio_offload.supported=true \
-    persist.bluetooth.leaudio_offload.disabled=false \
-    ro.bluetooth.leaudio_switcher.supported=true \
-    bluetooth.profile.bap.unicast.client.enabled?=true \
-    bluetooth.profile.csip.set_coordinator.enabled?=true \
-    bluetooth.profile.hap.client.enabled?=true \
-    bluetooth.profile.mcp.server.enabled?=true \
-    bluetooth.profile.ccp.server.enabled?=true \
-    bluetooth.profile.vcp.controller.enabled?=true \
-
-# Bluetooth LE Audio CIS handover to SCO
-# Set the property only if the controller doesn't support CIS and SCO
-# simultaneously. More details in b/242908683.
-PRODUCT_PRODUCT_PROPERTIES += \
-    persist.bluetooth.leaudio.notify.idle.during.call=true
-
-# BT controller not able to support LE Audio dual mic SWB call
-PRODUCT_PRODUCT_PROPERTIES += \
-    bluetooth.leaudio.dual_bidirection_swb.supported=false
+# Bluetooth HAL
+PRODUCT_COPY_FILES += \
+	device/google/pantah/configs/bluetooth/bt_vendor_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_vendor_overlay.conf
 
 # LE Auido Offload Capabilities setting
 PRODUCT_COPY_FILES += \
     device/google/pantah/configs/bluetooth/le_audio_codec_capabilities.xml:$(TARGET_COPY_OUT_VENDOR)/etc/le_audio_codec_capabilities.xml
-
-# LE Audio Unicast Allowlist
-PRODUCT_PRODUCT_PROPERTIES += \
-    persist.bluetooth.leaudio.allow_list=SM-R510,WF-1000XM5,SM-R630
-
-# Disable Bluetooth HAP by default
-PRODUCT_PRODUCT_PROPERTIES += \
-    bluetooth.profile.hap.enabled_by_default=false
-
-# Disable Bluetooth LE Audio toggle for ASHA device
-PRODUCT_PRODUCT_PROPERTIES += \
-    bluetooth.leaudio.toggle_visible_for_asha=false
-
-# Support LE & Classic concurrent encryption (b/330704060)
-PRODUCT_PRODUCT_PROPERTIES += \
-    bluetooth.ble.allow_enc_with_bredr=true
 
 # PowerStats HAL
 PRODUCT_SOONG_NAMESPACES += \
@@ -206,14 +146,7 @@ else
         device/google/pantah/configs/location/gps_user.xml.c10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/gps.xml
 endif
 
-# Set support one-handed mode
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.support_one_handed_mode=true
-
-# Set support hide display cutout feature
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.support_hide_display_cutout=true
-
+# CutoutOverlay
 PRODUCT_PACKAGES += \
     NoCutoutOverlay \
     AvoidAppsInCutoutOverlay
@@ -225,22 +158,6 @@ PRODUCT_PACKAGES += \
     SettingsOverlayGP4BC \
     SettingsOverlayCheetah
 
-# Keyboard bottom and side padding in dp for portrait mode and height ratio
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.com.google.ime.kb_pad_port_b=8 \
-    ro.com.google.ime.kb_pad_port_l=11 \
-    ro.com.google.ime.kb_pad_port_r=11 \
-    ro.com.google.ime.height_ratio=1.025
-
-# RKPD
-PRODUCT_PRODUCT_PROPERTIES += \
-    remote_provisioning.hostname=remoteprovisioning.googleapis.com \
-
-# The default value of this variable is false and should only be set to true when
-# the device allows users to enable the seamless transfer feature.
-PRODUCT_PRODUCT_PROPERTIES += \
-   euicc.seamless_transfer_enabled_in_non_qs=true
-
 # Device features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml
@@ -249,12 +166,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_SYSTEM_PROPERTIES += \
     persist.settings.large_screen_opt.enabled=false
 
-# Quick Start device-specific settings
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.quick_start.oem_id=00e0 \
-    ro.quick_start.device_id=cheetah
-
-# Bluetooth device id
-# Cheetah: 0x410A
-PRODUCT_PRODUCT_PROPERTIES += \
-    bluetooth.device_id.product_id=16650
+# Properties
+TARGET_PRODUCT_PROP += $(DEVICE_PATH)/$(DEVICE_CODENAME)/product.prop
+TARGET_VENDOR_PROP += $(DEVICE_PATH)/$(DEVICE_CODENAME)/vendor.prop
