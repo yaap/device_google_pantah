@@ -93,7 +93,6 @@ PRODUCT_COPY_FILES += \
 	device/google/pantah/configs/nfc/libnfc-nci-cheetah.conf:$(TARGET_COPY_OUT_PRODUCT)/etc/libnfc-nci.conf
 
 PRODUCT_PACKAGES += \
-	Tag \
 	android.hardware.nfc-service.st \
 	NfcOverlayCheetah
 
@@ -211,10 +210,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # default BDADDR for EVB only
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.vendor.bluetooth.evb_bdaddr="22:22:22:33:44:55"
-
-# Spatial Audio
-PRODUCT_PACKAGES += \
-	libspatialaudio
 
 # declare use of spatial audio
 PRODUCT_PROPERTY_OVERRIDES += \

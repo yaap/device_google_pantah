@@ -72,7 +72,6 @@ PRODUCT_COPY_FILES += \
     	device/google/pantah/configs/nfc/libnfc-nci-panther.conf:$(TARGET_COPY_OUT_PRODUCT)/etc/libnfc-nci.conf
 
 PRODUCT_PACKAGES += \
-	Tag \
 	android.hardware.nfc-service.st \
 	NfcOverlayPanther
 
@@ -104,10 +103,6 @@ PRODUCT_COPY_FILES += \
 	device/google/pantah/configs/power/powerhint-panther.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 PRODUCT_COPY_FILES += \
 	device/google/pantah/configs/power/powerhint-panther-a0.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint-a0.json
-
-# Spatial Audio
-PRODUCT_PACKAGES += \
-	libspatialaudio
 
 # Bluetooth HAL
 PRODUCT_COPY_FILES += \
