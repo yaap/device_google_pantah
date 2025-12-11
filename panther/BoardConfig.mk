@@ -14,23 +14,18 @@
 # limitations under the License.
 #
 
-# Enable load module in parallel
-BOARD_BOOTCONFIG += androidboot.load_modules_parallel=true
-
-# The modules which need to be loaded in sequential
-BOARD_KERNEL_CMDLINE += fips140.load_sequential=1
-BOARD_KERNEL_CMDLINE += exynos_drm.load_sequential=1
-
-TARGET_BOARD_INFO_FILE := device/google/pantah/board-info.txt
-TARGET_BOOTLOADER_BOARD_NAME := panther
+TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
+TARGET_BOOTLOADER_BOARD_NAME := $(DEVICE_CODENAME)
 TARGET_SCREEN_DENSITY := 420
 
-BOARD_KERNEL_CMDLINE += swiotlb=noforce
-
-include device/google/gs201/BoardConfig-common.mk
 include device/google/pantah/sepolicy/panther-sepolicy.mk
 include device/google/pantah/configs/wifi/BoardConfig-wifi.mk
 
+# SEPolicy
+include device/google/pantah/sepolicy/panther-sepolicy.mk
+
 DEVICE_PATH := device/google/pantah
 VENDOR_PATH := vendor/google/panther
-include $(DEVICE_PATH)/$(TARGET_BOOTLOADER_BOARD_NAME)/BoardConfigYAAP.mk
+
+include $(DEVICE_PATH)/BoardConfigYAAP.mk
+include $(VENDOR_PATH)/BoardConfigVendor.mk
