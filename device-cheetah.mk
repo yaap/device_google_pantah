@@ -32,11 +32,6 @@ ifeq ($(filter factory_cheetah, $(TARGET_PRODUCT)),)
 include device/google/pantah/configs/uwb/uwb_calibration.mk
 endif
 
-# go/lyric-soong-variables
-$(call soong_config_set,lyric,camera_hardware,cheetah)
-$(call soong_config_set,lyric,tuning_product,cheetah)
-$(call soong_config_set,google3a_config,target_device,cheetah)
-
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.support_kernel_idle_timer=true
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.ignore_hdr_camera_layers=true
 
@@ -101,9 +96,6 @@ PRODUCT_PACKAGES += \
 	Tag \
 	android.hardware.nfc-service.st \
 	NfcOverlayCheetah
-
-# Shared Modem Platform
-SHARED_MODEM_PLATFORM_VENDOR := lassen
 
 # Shared Modem Platform
 include device/google/gs-common/modem/modem_svc_sit/shared_modem_platform.mk
@@ -241,8 +233,6 @@ PRODUCT_PACKAGES += \
     UwbOverlayC10 \
     WifiOverlay2022_C10
 
-PRODUCT_SOONG_NAMESPACES += device/google/pantah/cheetah/
-
 # Location
 PRODUCT_COPY_FILES += \
     device/google/pantah/configs/location/lhd_user.conf.c10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/lhd.conf \
@@ -297,9 +287,6 @@ PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.udfps.lhbm_controlled_in_hal_supported=true
 
 # Vibrator HAL
-$(call soong_config_set,haptics,kernel_ver,v$(subst .,_,$(TARGET_LINUX_KERNEL_VERSION)))
-ACTUATOR_MODEL := luxshare_ict_081545
-ADAPTIVE_HAPTICS_FEATURE := adaptive_haptics_v1
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.vibrator.hal.chirp.enabled=0 \
     ro.vendor.vibrator.hal.device.mass=0.214 \

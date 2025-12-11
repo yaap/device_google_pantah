@@ -21,20 +21,13 @@ BOARD_BOOTCONFIG += androidboot.load_modules_parallel=true
 BOARD_KERNEL_CMDLINE += fips140.load_sequential=1
 BOARD_KERNEL_CMDLINE += exynos_drm.load_sequential=1
 
-ifdef PHONE_CAR_BOARD_PRODUCT
-    include device/google_car/$(PHONE_CAR_BOARD_PRODUCT)/BoardConfig.mk
-else
-    TARGET_SCREEN_DENSITY := 420
-endif
-
 TARGET_BOARD_INFO_FILE := device/google/pantah/board-info.txt
 TARGET_BOOTLOADER_BOARD_NAME := panther
-BOARD_USES_GENERIC_AUDIO := true
-USES_DEVICE_GOOGLE_CLOUDRIPPER := true
+TARGET_SCREEN_DENSITY := 420
+
 BOARD_KERNEL_CMDLINE += swiotlb=noforce
 
 include device/google/gs201/BoardConfig-common.mk
-include device/google/gs-common/check_current_prebuilt/check_current_prebuilt.mk
 include device/google/pantah/sepolicy/panther-sepolicy.mk
 include device/google/pantah/configs/wifi/BoardConfig-wifi.mk
 

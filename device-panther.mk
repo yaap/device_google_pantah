@@ -26,11 +26,6 @@ include device/google/gs201/device-shipping-common.mk
 include device/google/gs-common/bcmbt/bluetooth.mk
 include device/google/gs-common/touch/focaltech/focaltech.mk
 
-# go/lyric-soong-variables
-$(call soong_config_set,lyric,camera_hardware,panther)
-$(call soong_config_set,lyric,tuning_product,panther)
-$(call soong_config_set,google3a_config,target_device,panther)
-
 # Init files
 PRODUCT_COPY_FILES += \
 	device/google/pantah/init/init.pantah.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.pantah.rc \
@@ -80,9 +75,6 @@ PRODUCT_PACKAGES += \
 	Tag \
 	android.hardware.nfc-service.st \
 	NfcOverlayPanther
-
-# Shared Modem Platform
-SHARED_MODEM_PLATFORM_VENDOR := lassen
 
 # Shared Modem Platform
 include device/google/gs-common/modem/modem_svc_sit/shared_modem_platform.mk
@@ -224,8 +216,6 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.ignore_hdr_camera_layer
 PRODUCT_PACKAGES += \
     WifiOverlay2022_P10
 
-PRODUCT_SOONG_NAMESPACES += device/google/pantah/panther/
-
 # Location
 PRODUCT_COPY_FILES += \
     device/google/pantah/configs/location/lhd_user.conf.p10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/lhd.conf \
@@ -282,9 +272,6 @@ PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.udfps.lhbm_controlled_in_hal_supported=true
 
 # Vibrator HAL
-$(call soong_config_set,haptics,kernel_ver,v$(subst .,_,$(TARGET_LINUX_KERNEL_VERSION)))
-ACTUATOR_MODEL := luxshare_ict_081545
-ADAPTIVE_HAPTICS_FEATURE := adaptive_haptics_v1
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.vibrator.hal.chirp.enabled=0 \
     ro.vendor.vibrator.hal.device.mass=0.195 \

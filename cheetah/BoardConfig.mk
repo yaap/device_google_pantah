@@ -24,12 +24,10 @@ BOARD_KERNEL_CMDLINE += exynos_drm.load_sequential=1
 TARGET_BOARD_INFO_FILE := device/google/pantah/board-info.txt
 TARGET_BOOTLOADER_BOARD_NAME := cheetah
 TARGET_SCREEN_DENSITY := 560
-BOARD_USES_GENERIC_AUDIO := true
-USES_DEVICE_GOOGLE_CLOUDRIPPER := true
+
 BOARD_KERNEL_CMDLINE += swiotlb=noforce
 
 include device/google/gs201/BoardConfig-common.mk
-include device/google/gs-common/check_current_prebuilt/check_current_prebuilt.mk
 include device/google/pantah/sepolicy/cheetah-sepolicy.mk
 include device/google/pantah/configs/wifi/BoardConfig-wifi.mk
 
