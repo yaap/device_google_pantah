@@ -34,9 +34,6 @@ ifeq ($(filter factory_cheetah, $(TARGET_PRODUCT)),)
 include device/google/pantah/configs/uwb/uwb_calibration.mk
 endif
 
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.support_kernel_idle_timer=true
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.ignore_hdr_camera_layers=true
-
 # Init files
 PRODUCT_COPY_FILES += \
 	device/google/pantah/init/init.pantah.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.pantah.rc \
@@ -57,9 +54,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	device/google/pantah/configs/media/media_profiles_cheetah.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml
 
-# Media Performance Class 13
-PRODUCT_PROPERTY_OVERRIDES += ro.odm.build.media_performance_class=33
-
 # Display Config
 PRODUCT_COPY_FILES += \
         device/google/pantah/cheetah/display_colordata_dev_cal0.pb:$(TARGET_COPY_OUT_VENDOR)/etc/display_colordata_dev_cal0.pb \
@@ -68,20 +62,6 @@ PRODUCT_COPY_FILES += \
         device/google/pantah/cheetah/display_colordata_sdc-s6e3hc4_cal0.pb:$(TARGET_COPY_OUT_VENDOR)/etc/display_colordata_sdc-s6e3hc4_cal0.pb \
         device/google/pantah/cheetah/display_golden_boe-nt37290_cal0.pb:$(TARGET_COPY_OUT_VENDOR)/etc/display_golden_boe-nt37290_cal0.pb \
         device/google/pantah/cheetah/display_golden_sdc-s6e3hc4_cal0.pb:$(TARGET_COPY_OUT_VENDOR)/etc/display_golden_sdc-s6e3hc4_cal0.pb
-
-# Display LBE
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += vendor.display.lbe.supported=1
-
-#   config of display brightness dimming
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += vendor.display.0.brightness.dimming.usage=1
-
-#   config of primary display frames to reach LHBM peak brightness
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += vendor.primarydisplay.lhbm.frames_to_reach_peak_brightness=2
-
-# Display RRS default Config
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += persist.vendor.display.primary.boot_config=1080x2340@120
-# TODO: b/250788756 - the property will be phased out after HWC loads user-preferred mode
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += vendor.display.preferred_mode=1080x2340@120
 
 # NFC
 PRODUCT_COPY_FILES += \
@@ -130,10 +110,6 @@ PRODUCT_COPY_FILES += \
 # Bluetooth HAL
 PRODUCT_COPY_FILES += \
 	device/google/pantah/configs/bluetooth/bt_vendor_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_vendor_overlay.conf
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.bluetooth.a2dp_offload.supported=true \
-    persist.bluetooth.a2dp_offload.disabled=false \
-    persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac-opus
 
 # Enable Bluetooth AutoOn feature
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -209,18 +185,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     bluetooth.ble.allow_enc_with_bredr=true
 
-# default BDADDR for EVB only
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.vendor.bluetooth.evb_bdaddr="22:22:22:33:44:55"
-
-# declare use of spatial audio
-PRODUCT_PROPERTY_OVERRIDES += \
-       ro.audio.spatializer_enabled=true
-
-# optimize spatializer effect
-PRODUCT_PROPERTY_OVERRIDES += \
-       audio.spatializer.effect.util_clamp_min=300
-
 # PowerStats HAL
 PRODUCT_SOONG_NAMESPACES += \
     device/google/pantah/powerstats/configs/cheetah \
@@ -246,22 +210,6 @@ endif
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.support_one_handed_mode=true
 
-# Set zram size
-PRODUCT_VENDOR_PROPERTIES += \
-	vendor.zram.size=3g
-
-PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.build.svn=81
-
-# Set device family property for SMR
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.device_family=P10C10L10
-
-# DCK properties based on target
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.gms.dck.eligible_wcc=3 \
-    ro.gms.dck.se_capability=1
-
 # Set support hide display cutout feature
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.support_hide_display_cutout=true
@@ -277,27 +225,6 @@ PRODUCT_PACKAGES += \
     SettingsOverlayGP4BC \
     SettingsOverlayCheetah
 
-# Fingerprint HAL
-PRODUCT_VENDOR_PROPERTIES += \
-    persist.vendor.udfps.als_feed_forward_supported=true \
-    persist.vendor.udfps.fps_touch_handler_supported=false \
-    persist.vendor.udfps.lhbm_controlled_in_hal_supported=true
-
-# Vibrator HAL
-PRODUCT_VENDOR_PROPERTIES += \
-    persist.vendor.vibrator.hal.chirp.enabled=0 \
-    ro.vendor.vibrator.hal.device.mass=0.214 \
-    ro.vendor.vibrator.hal.loc.coeff=2.7 \
-    persist.vendor.vibrator.hal.context.enable=false \
-    persist.vendor.vibrator.hal.context.scale=60 \
-    persist.vendor.vibrator.hal.context.fade=true \
-    persist.vendor.vibrator.hal.context.cooldowntime=1600 \
-    persist.vendor.vibrator.hal.context.settlingtime=5000
-
-# Override Output Distortion Gain
-PRODUCT_VENDOR_PROPERTIES += \
-    vendor.audio.hapticgenerator.distortion.output.gain=0.38
-
 # Keyboard bottom and side padding in dp for portrait mode and height ratio
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.com.google.ime.kb_pad_port_b=8 \
@@ -305,18 +232,9 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.com.google.ime.kb_pad_port_r=11 \
     ro.com.google.ime.height_ratio=1.025
 
-# Enable camera exif model/make reporting
-PRODUCT_VENDOR_PROPERTIES += \
-    persist.vendor.camera.exif_reveal_make_model=true \
-    persist.vendor.camera.front_720P_always_binning=true
-
 # RKPD
 PRODUCT_PRODUCT_PROPERTIES += \
     remote_provisioning.hostname=remoteprovisioning.googleapis.com \
-
-##Audio Vendor property
-PRODUCT_PROPERTY_OVERRIDES += \
-	persist.vendor.audio.cca.enabled=false
 
 # The default value of this variable is false and should only be set to true when
 # the device allows users to enable the seamless transfer feature.
@@ -330,10 +248,6 @@ PRODUCT_COPY_FILES += \
 # Disable Settings large-screen optimization enabled by Window Extensions
 PRODUCT_SYSTEM_PROPERTIES += \
     persist.settings.large_screen_opt.enabled=false
-
-# Enable DeviceAsWebcam support
-PRODUCT_VENDOR_PROPERTIES += \
-    ro.usb.uvc.enabled=true
 
 # Quick Start device-specific settings
 PRODUCT_PRODUCT_PROPERTIES += \
