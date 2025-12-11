@@ -14,18 +14,7 @@
 # limitations under the License.
 #
 
-ifdef RELEASE_GOOGLE_CHEETAH_RADIO_DIR
-RELEASE_GOOGLE_PRODUCT_RADIO_DIR := $(RELEASE_GOOGLE_CHEETAH_RADIO_DIR)
-endif
-RELEASE_GOOGLE_BOOTLOADER_CHEETAH_DIR ?= pdk# Keep this for pdk TODO: b/327119000
-RELEASE_GOOGLE_PRODUCT_BOOTLOADER_DIR := bootloader/$(RELEASE_GOOGLE_BOOTLOADER_CHEETAH_DIR)
-$(call soong_config_set,pantah_bootloader,prebuilt_dir,$(RELEASE_GOOGLE_BOOTLOADER_CHEETAH_DIR))
-ifneq ($(filter trunk%, $(RELEASE_GOOGLE_BOOTLOADER_CHEETAH_DIR)),)
-$(call soong_config_set,pantah_fingerprint,prebuilt_dir,trunk)
-else
-$(call soong_config_set,pantah_fingerprint,prebuilt_dir,$(RELEASE_GOOGLE_BOOTLOADER_CHEETAH_DIR))
-endif
-
+TARGET_LINUX_KERNEL_VERSION := 6.1
 TARGET_KERNEL_DIR := device/google/pantah-kernels/6.1/25Q1-13202328
 TARGET_BOARD_KERNEL_HEADERS := device/google/pantah-kernels/6.1/25Q1-13202328/kernel-headers
 TARGET_PREBUILT_KERNEL := device/google/pantah-kernels/6.1/25Q1-13202328/Image.lz4
@@ -109,7 +98,6 @@ PRODUCT_COPY_FILES += \
 	device/google/pantah/configs/nfc/libnfc-nci-cheetah.conf:$(TARGET_COPY_OUT_PRODUCT)/etc/libnfc-nci.conf
 
 PRODUCT_PACKAGES += \
-	$(RELEASE_PACKAGE_NFC_STACK) \
 	Tag \
 	android.hardware.nfc-service.st \
 	NfcOverlayCheetah
@@ -275,35 +263,13 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_VENDOR_PROPERTIES += \
 	vendor.zram.size=3g
 
-# Increment the SVN for any official public releases
-ifdef RELEASE_SVN_CHEETAH
-TARGET_SVN ?= $(RELEASE_SVN_CHEETAH)
-else
-# Set this for older releases that don't use build flag
-TARGET_SVN ?= 61
-endif
-
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.build.svn=$(TARGET_SVN)
+    ro.vendor.build.svn=81
 
 # Set device family property for SMR
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.device_family=P10C10L10
 
-# Set build properties for SMR builds
-ifeq ($(RELEASE_IS_SMR), true)
-    ifneq (,$(RELEASE_BASE_OS_CHEETAH))
-        PRODUCT_BASE_OS := $(RELEASE_BASE_OS_CHEETAH)
-    endif
-endif
-
-# Set build properties for EMR builds
-ifeq ($(RELEASE_IS_EMR), true)
-    ifneq (,$(RELEASE_BASE_OS_CHEETAH))
-        PRODUCT_PROPERTY_OVERRIDES += \
-        ro.build.version.emergency_base_os=$(RELEASE_BASE_OS_CHEETAH)
-    endif
-endif
 # DCK properties based on target
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.gms.dck.eligible_wcc=3 \
