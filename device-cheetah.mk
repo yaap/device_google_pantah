@@ -17,9 +17,9 @@
 #
 
 TARGET_LINUX_KERNEL_VERSION := 6.1
-TARGET_KERNEL_DIR := device/google/pantah-kernels/6.1/25Q1-13202328
-TARGET_BOARD_KERNEL_HEADERS := device/google/pantah-kernels/6.1/25Q1-13202328/kernel-headers
-TARGET_PREBUILT_KERNEL := device/google/pantah-kernels/6.1/25Q1-13202328/Image.lz4
+TARGET_KERNEL_DIR := device/google/pantah-kernels/6.1/
+TARGET_BOARD_KERNEL_HEADERS := device/google/pantah-kernels/6.1/kernel-headers
+TARGET_PREBUILT_KERNEL := device/google/pantah-kernels/6.1/Image.lz4
 
 $(call inherit-product, device/google/pantah/configs/uwb/uwb_calibration_country.mk)
 
