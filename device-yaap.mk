@@ -11,6 +11,14 @@ DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay-yaap
 PRODUCT_PACKAGES += \
     ANGLE
 
+
+# Boot control
+PRODUCT_PACKAGES += \
+    android.hardware.boot-service.default-pixel \
+    android.hardware.boot-service.default_recovery-pixel
+
+PRODUCT_SOONG_NAMESPACES += device/google/pantah/bootctrl/aidl
+
 # EUICC
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.euicc.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.telephony.euicc.xml
