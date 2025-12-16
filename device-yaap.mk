@@ -11,6 +11,10 @@ DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay-yaap
 PRODUCT_PACKAGES += \
     ANGLE
 
+# Bluetooth
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth.prebuilt.xml \
+    android.hardware.bluetooth_le.prebuilt.xml
 
 # Boot control
 PRODUCT_PACKAGES += \
