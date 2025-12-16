@@ -27,8 +27,6 @@ DEVICE_PACKAGE_OVERLAYS += device/google/pantah/cheetah/overlay
 
 include device/google/pantah/configs/audio/cheetah/audio-tables.mk
 include device/google/gs201/device-shipping-common.mk
-include device/google/gs-common/bcmbt/bluetooth.mk
-include device/google/gs-common/touch/syna/syna0.mk
 
 ifeq ($(filter factory_cheetah, $(TARGET_PRODUCT)),)
 include device/google/pantah/configs/uwb/uwb_calibration.mk
@@ -77,9 +75,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
 	android.hardware.nfc-service.st \
 	NfcOverlayCheetah
-
-# Shared Modem Platform
-include device/google/gs-common/modem/modem_svc_sit/shared_modem_platform.mk
 
 # SecureElement
 PRODUCT_PACKAGES += \

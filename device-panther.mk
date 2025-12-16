@@ -25,8 +25,6 @@ DEVICE_PACKAGE_OVERLAYS += device/google/pantah/panther/overlay
 
 include device/google/pantah/configs/audio/panther/audio-tables.mk
 include device/google/gs201/device-shipping-common.mk
-include device/google/gs-common/bcmbt/bluetooth.mk
-include device/google/gs-common/touch/focaltech/focaltech.mk
 
 # Init files
 PRODUCT_COPY_FILES += \
@@ -67,9 +65,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
 	android.hardware.nfc-service.st \
 	NfcOverlayPanther
-
-# Shared Modem Platform
-include device/google/gs-common/modem/modem_svc_sit/shared_modem_platform.mk
 
 # SecureElement
 PRODUCT_PACKAGES += \
