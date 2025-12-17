@@ -32,4 +32,4 @@ BOARD_VENDOR_SEPOLICY_DIRS += \
     hardware/google/pixel-sepolicy/vibrator/cs40l26
 
 # WiFi
-include $(DEVICE_PATH)/configs/wifi/BoardConfig-wifi.mk
+include $(DEVICE_PATH)/wifi/BoardConfig-wifi.mk

@@ -18,8 +18,6 @@ TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
 TARGET_BOOTLOADER_BOARD_NAME := $(DEVICE_CODENAME)
 TARGET_SCREEN_DENSITY := 560
 
-include device/google/pantah/configs/wifi/BoardConfig-wifi.mk
-
 # SEPolicy
 BOARD_VENDOR_SEPOLICY_DIRS += \
     $(DEVICE_PATH)/sepolicy/$(DEVICE_CODENAME)/vendor
