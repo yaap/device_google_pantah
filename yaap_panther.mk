@@ -17,7 +17,7 @@ VENDOR_PATH := vendor/google/panther
 # Inherit a few makefiles
 $(call inherit-product, $(DEVICE_PATH)/aosp_$(DEVICE_CODENAME).mk)
 $(call inherit-product, device/google/gs201/yaap_common.mk)
-$(call inherit-product, $(DEVICE_PATH)/$(DEVICE_CODENAME)/device-common.mk)
+$(call inherit-product, $(DEVICE_PATH)/$(DEVICE_CODENAME)/device-$(DEVICE_CODENAME).mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_BRAND := google
