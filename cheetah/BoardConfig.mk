@@ -27,5 +27,5 @@ BOARD_VENDOR_SEPOLICY_DIRS += \
 DEVICE_PATH := device/google/pantah
 VENDOR_PATH := vendor/google/cheetah
 
-include $(DEVICE_PATH)/BoardConfigYAAP.mk
+include $(DEVICE_PATH)/BoardConfig-common.mk
 include $(VENDOR_PATH)/BoardConfigVendor.mk
