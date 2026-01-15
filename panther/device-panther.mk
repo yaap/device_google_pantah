@@ -4,6 +4,10 @@
 # Copyright (C) Yet Another AOSP Project
 #
 
+# Overlays
+DEVICE_PACKAGE_OVERLAYS += device/google/pantah/panther/overlay
+DEVICE_PACKAGE_OVERLAYS += device/google/pantah/panther/overlay-yaap
+
 # Inherit common device configuration
 $(call inherit-product, $(DEVICE_PATH)/device-common.mk)
 
@@ -14,10 +18,6 @@ PRODUCT_PACKAGES += \
 # Init
 PRODUCT_PACKAGES += \
     init.recovery.panther.touch.rc
-
-# Overlays
-DEVICE_PACKAGE_OVERLAYS += device/google/pantah/panther/overlay
-DEVICE_PACKAGE_OVERLAYS += device/google/pantah/panther/overlay-yaap
 
 # Recovery files
 PRODUCT_COPY_FILES += \

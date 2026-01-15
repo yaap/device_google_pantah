@@ -4,12 +4,12 @@
 # Copyright (C) Yet Another AOSP Project
 #
 
-# Inherit common configuration
-$(call inherit-product, $(DEVICE_PATH)/device-common.mk)
-
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += device/google/pantah/cheetah/overlay
 DEVICE_PACKAGE_OVERLAYS += device/google/pantah/cheetah/overlay-yaap
+
+# Inherit common configuration
+$(call inherit-product, $(DEVICE_PATH)/device-common.mk)
 
 # Init
 PRODUCT_PACKAGES += \
