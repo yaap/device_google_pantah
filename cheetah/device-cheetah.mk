@@ -42,3 +42,5 @@ PRODUCT_PACKAGES += \
 # Properties
 TARGET_PRODUCT_PROP += $(DEVICE_PATH)/$(DEVICE_CODENAME)/product.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/$(DEVICE_CODENAME)/vendor.prop
+
+$(call soong_config_set,surfaceflinger,frame_rate_category_high,120)
